@@ -1,12 +1,12 @@
 import React, {useEffect, useState} from 'react';
-import {Link, useNavigate} from "react-router-dom";
 import axios from "axios";
+import {Link, useNavigate} from "react-router-dom";
 
-const MyOrder = () => {
+const AllOrder = () => {
     const navigate=useNavigate()
     const [orders,setOrders]=useState([])
     useEffect(()=>{
-        axios.get('/my-orders')
+        axios.get('/all-orders')
             .then(res => {
                 if(res.data.data.length >0){
                     setOrders(res.data.data)
@@ -14,7 +14,6 @@ const MyOrder = () => {
             })
             .catch()
     })
-
     return (
         <div className="overflow-x-auto ">
             <h1 className={'bg-dark text-center text-white text-4xl font-bold'}>Order List</h1>
@@ -37,8 +36,8 @@ const MyOrder = () => {
 
                                 <td className=''>
 
-                                    <button onClick={()=>navigate(`/dashboard/user/${order._id}`)} className='btn btn-secondary py-1 mr-2'>View Order</button>
-                                    { order.isPay === "unpaid" ?  <button onClick={()=>navigate(`/dashboard/user/${order._id}/${order.totalPrice}`)} className='btn btn-primary py-1'>checkout</button> :""}
+                                    <button onClick={()=>navigate(`/dashboard/admin/order/${order._id}`)} className='btn btn-secondary py-1 mr-2'>View Order</button>
+
                                 </td>
 
                             </tr>
@@ -48,7 +47,7 @@ const MyOrder = () => {
                 }
                 {
                     orders.length ===0 ? <tr className={'text-center'}>
-                        <td colSpan={3}>You Have no Orders ,Go to Cart Page <Link className={'btn btn-primary'} to={'/cart'}>Click Here</Link> </td>
+                        <td colSpan={3}>There is no orders</td>
                     </tr> : ""
                 }
                 </tbody>
@@ -59,4 +58,4 @@ const MyOrder = () => {
     );
 };
 
-export default MyOrder;
+export default AllOrder;

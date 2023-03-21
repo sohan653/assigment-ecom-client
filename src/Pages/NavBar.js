@@ -62,7 +62,7 @@ const NavBar = ({children}) => {
 
 
                         {
-                            auth.user ? <div className="dropdown dropdown-bottom dropdown-end">
+                            auth?.user  ? <div className="dropdown dropdown-bottom dropdown-end">
                                 <label tabIndex="0" className=" m-1">
                                     <img className='w-8 mr-3  '
                                          src="https://th.bing.com/th/id/R.e57e5808c9ce3679c17ed47fd7cd12d2?rik=NH5wGpiO%2b3mPFg&riu=http%3a%2f%2fcdn.onlinewebfonts.com%2fsvg%2fimg_258083.png&ehk=zTjdaif7gRiY5rck%2floyeZ8JEjXMWuj7xbBvkxxjY3M%3d&risl=&pid=ImgRaw&r=0"

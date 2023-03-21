@@ -20,6 +20,9 @@ import {useLoading} from "./hooks/loading";
 import Cart from "./Pages/Cart";
 import PlaceOrder from "./Pages/UserDashboard/PlaceOrder";
 import MyOrder from "./Pages/UserDashboard/MyOrder";
+import ViewOrder from "./Pages/UserDashboard/viewOrder";
+import AllOrder from "./Pages/AdminDashboard/AllOrder";
+import CheckOut from "./Pages/UserDashboard/checkOut";
 
 
 function App() {
@@ -38,6 +41,8 @@ function App() {
           <Route path={'dashboard'} element={<PrivateRoute/>}>
               <Route path={'user'} element={<UserDashBoard/>}>
                     <Route path={''} element={<MyOrder/>}></Route>
+                    <Route path={':id'} element={<ViewOrder/>}></Route>
+                    <Route path={':id/:price'} element={<CheckOut/>}></Route>
               </Route>
               <Route path={'place-order'} element={<PlaceOrder/>}></Route>
           </Route>
@@ -48,6 +53,8 @@ function App() {
                   <Route path={''} element={<ProductList/>}></Route>
                   <Route path={':slug'} element={<EditProduct/>}></Route>
                   <Route path={'create-product'} element={<CreateProduct/>}></Route>
+                  <Route path={'all-order'} element={<AllOrder/>}></Route>
+                  <Route path={'order/:id'} element={<ViewOrder/>}></Route>
               </Route>
           </Route>
           <Route path={'*'} element={<NotFound/>}></Route>

@@ -11,7 +11,7 @@ const PlaceOrder = () => {
     const navigate=useNavigate()
     const [isLoading,toggleLoading]=useLoading()
     const [auth]=useAuth()
-    const { cartItems } = useCart();
+    const { cartItems,clearCart } = useCart();
     const [products,setProducts]=useState([])
     const [totalPrice,setTotalPrice]=useState('')
     const [numbers,setNumbers]=useState('')
@@ -52,10 +52,12 @@ const PlaceOrder = () => {
 
                }
                if(auth?.token){
-                   const {data}= await axios.post('create-order',orderPayload);
+                   const {data}= await axios.post('/create-order',orderPayload);
                    if(data.status ==="success"){
+                        clearCart()
                        toast.success("place order successfully")
                        toggleLoading()
+
                        navigate('/dashboard/user')
                    }else{
                        toast.error('failed to place order');
@@ -68,6 +70,7 @@ const PlaceOrder = () => {
            toast.error("something wrong")
         }
     }
+
     if(isLoading){
         return <ScreenLoader></ScreenLoader>
     }
